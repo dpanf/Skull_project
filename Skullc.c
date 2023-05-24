@@ -20,6 +20,7 @@ void preparation(unsigned char *image, int h, int w){
       if(image[w*i+j]>160) 
         image[w*i+j]=255; 
     }
+  return;
 }
 
 void Gauss(unsigned char* p, unsigned char* l, int h, int w){
@@ -66,6 +67,7 @@ void writePng(const char* filename, const unsigned char* image, unsigned width, 
   if(error) printf("error %u: %s\n", error, lodepng_error_text(error));
   lodepng_state_cleanup(&state);
   free(png);
+  return;
 }
 
 int main(){
@@ -87,8 +89,5 @@ int main(){
   Gauss(opic,piccopy,h,w);
   colour(piccopy,mcopic,h,w,n);
   writePng(file2,mcopic,w,h);
-  free(opic);
-  free(piccopy);
-  free(mcopic);
-  free(image);
+  return 0;
 }
